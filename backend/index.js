@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 
 
 const port = process.env.port || 5000;
-//rl4VPIgDFwqQYD5J
 require('dotenv').config()
 
 async function main() {
