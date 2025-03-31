@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 
-const port = process.env.port || 5000;
+
+const port = process.env.PORT || 5000;
 //mcr9rRQ1qS7X9X0x
 require('dotenv').config()
 
@@ -23,15 +24,19 @@ app.use(cors(
 const bookRoutes = require("./src/books/book.route")
 app.use("/api/books",bookRoutes)
 
+// MongoDB connection
 async function main() {
-    await mongoose.connect(process.env.DB_URL);
-    app.use('/', (req, res) => {    
-        res.send('Book Server');
-    });
-    
-  }
-  main().then(() => console.log("MongoDB connected successfully")).catch(err => console.log(err));
+  await mongoose.connect(process.env.DB_URL);
+  console.log("MongoDB connected successfully!");
+}
+main().catch(err => console.log(err));
+
+// Test route (outside main)
+app.get("/", (req, res) => {
+  res.send("Book Store Server is running!");
+});
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-  })
+  console.log(`Example app listening on port ${port}`);
+});
+
