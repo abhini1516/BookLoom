@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom'
 import Navbar from './components/Navbar';
-import Banner from './pages/home/banner';  // ✅ Import the Navbar component
-import Home from './pages/home/Home.jsx'
 import './App.css'
 import { useEffect, useState } from 'react';
+import Banner from './pages/home/Banner.jsx';
+import Home from './pages/home/home.jsx';
 
 function App() {
   return (
