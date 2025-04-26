@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import BookCard from '../books/BookCard';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper';
+import { Pagination } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -16,22 +16,25 @@ const TopSellers = () => {
     useEffect(() => {
         fetch("books.json")
             .then(res => res.json())
-            .then((data) => setBooks(data));
+            .then((data) => setBooks(data))
+            .catch((error) => console.error("Failed to fetch books:", error));
     }, []);
 
     const filteredBooks = selectedCategory === "Choose a genre"
         ? books
-        : books.filter(book => book.category === selectedCategory.toLowerCase());
-    console.log(filteredBooks);
+        : books.filter(book =>
+            book.category?.toLowerCase() === selectedCategory.toLowerCase()
+        );
 
     return (
         <div className='py-10'>
-            <h2 className="text-3l font-semibold mb-6">Top Sellers</h2>
-            {/* Category filtering */}
+            <h2 className="text-3xl font-semibold mb-6">Top Sellers</h2>
+
             <div className='mb-8 flex items-center'>
                 <select
                     name="Category"
                     id="Category"
+                    value={selectedCategory}
                     className='border bg-[#EAEAEA] border-gray-300 rounded-md px-4 py-2 focus:outline-none'
                     onChange={(e) => setSelectedCategory(e.target.value)}
                 >
@@ -41,13 +44,10 @@ const TopSellers = () => {
                 </select>
             </div>
 
-            {/* Swiper Component */}
             <Swiper
                 slidesPerView={1}
                 spaceBetween={10}
-                pagination={{
-                    clickable: true,
-                }}
+                pagination={{ clickable: true }}
                 breakpoints={{
                     640: {
                         slidesPerView: 2,
