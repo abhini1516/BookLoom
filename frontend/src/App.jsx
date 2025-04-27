@@ -3,7 +3,8 @@ import Navbar from './components/Navbar';
 import './App.css'
 import { useEffect, useState } from 'react';
 import Banner from './pages/home/Banner.jsx';
-import Home from './pages/home/home.jsx';
+import Home from './pages/home/Home.jsx';
+import Footer from './components/Footer.jsx';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Banner/>
       <Home/>
       </main>
-      <footer>footer</footer>
+      <Footer/>
     </>
   );
 }

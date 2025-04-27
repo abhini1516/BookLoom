@@ -25,8 +25,8 @@ const TopSellers = () => {
     console.log(filteredBooks);
 
     return (
-        <div className='py-10'>
-            <h2 className="text-3l font-semibold mb-6">Top Sellers</h2>
+        <div className='py-16'>
+            <h2 className="text-3xl font-semibold mb-6">Top Sellers</h2>
             {/* Category filtering */}
             <div className='mb-8 flex items-center'>
                 <select
