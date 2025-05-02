@@ -13,11 +13,11 @@ require('dotenv').config()
 //middleware
 app.use(express.json());
 app.use(cors(
-  {
-    origin: ['http://localhost:5173/'],
-    
-    credentials: true,
-  }
+  // {
+  //   origin: ['http://localhost:5173/'],
+  //   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  //   credentials: true,
+  // }
 ));
 
 //routes
@@ -37,6 +37,6 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Example app listening on port http://localhost:${port}`);
 });
 
