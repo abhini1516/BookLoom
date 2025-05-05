@@ -3,6 +3,7 @@ import App from "../App";
 import Home from "../pages/home/Home.jsx";
 import Login from "../components/Login.jsx";
 import Register from "../components/Register.jsx";
+import SingleBook from "../pages/books/SingleBook.jsx";
 
 const router = createBrowserRouter([
     {
@@ -11,7 +12,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <home/>,
+                element: <Home />,
             },
             {
                 path: "/orders",
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
                 path: "/about",
                 element: <div>about</div>
             },
+            {
+                path: "/books/:id",
+                element: <SingleBook />
+            }
+            
         ]
     },
     {

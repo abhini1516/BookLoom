@@ -50,7 +50,7 @@ const news = [
 
 const News = () => {
   return (
-    <div className=''py-16>
+    <div className="py-16">
         <h2 className='text-3xl font-semibold mb-6 '> News </h2>
         <Swiper
         slidesPerView={1}
