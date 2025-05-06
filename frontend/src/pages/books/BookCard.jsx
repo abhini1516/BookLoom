@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FiShoppingCart } from 'react-icons/fi';
-import { getImgUrl } from '../../utils/getimgUrl';
+import { getImgUrl } from '../../utils/getImgUrl';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/features/cart/cartSlice';
@@ -20,7 +20,7 @@ const BookCard = ({ book }) => {
         <div className="rounded-lg transition-shadow duration-300">
             <div className="flex flex-col sm:flex-row sm:items-center sm:h-72 sm:justify-center gap-4">
                 <div className="sm:h-72 sm:flex-shrink-0 border rounded-md">
-                    <Link to={`/books/${book.id}`} aria-label={`View details of ${book.title}`}>
+                    <Link to={`/books/${book._id}`} aria-label={`View details of ${book.title}`}>
                         <img
                             src={getImgUrl(book.coverImage) || 'fallback-image.jpg'}
                             alt={book.title || 'Book Cover'}
@@ -31,7 +31,7 @@ const BookCard = ({ book }) => {
                 </div>
 
                 <div>
-                    <Link to={`/books/${book.id}`}>
+                    <Link to={`/books/${book._id}`}>
                         <h3 className="text-xl font-semibold hover:text-blue-600 mb-3">
                             {book?.title}
                         </h3>
