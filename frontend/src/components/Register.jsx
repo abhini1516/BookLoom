@@ -1,15 +1,40 @@
-import React from 'react'
+import React , {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
+import { useAuth } from '../context/AuthContext';
+import { Navigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
+
 const Register = () => {
-    const [messsage, setMessage] = React.useState('')
+    const [message, setMessage] = useState('');
+    const  {registerUser,signInWithGoogle} = useAuth();
+    console.log(registerUser)
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
-    const handleGoogleSignIn = () => {
+    //register user
+    const onSubmit = async(data) => {
+        console.log(data)
+        try {
+            await registerUser(data.email, data.password);
+            alert("User registered successfully")
+        } catch (error) {
+            setMessage("Please provide a valid email and password")
+            console.log(error)
+        }
+    }
+    
+    const handleGoogleSignIn = async() => {
+        try {
+            await signInWithGoogle();
+            alert("User logged in successfully");
+            navigate("/");
+        } catch (error) {
+            alert("Google sign in failed");
+            console.log(error)
+            
+        }
 
     }
     return (
@@ -32,7 +57,7 @@ const Register = () => {
                                 type="password" name="password" id="password" placeholder='Password' className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline' required />
                         </div>
                         {
-                            messsage && <p className='text-red-500 text-xs italic mb-3'>{messsage}</p>
+                            message && <p className='text-red-500 text-xs italic mb-3'>{message}</p>
                         }
                         <div>
                             <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' type='submit'>Register</button>
@@ -50,7 +75,7 @@ const Register = () => {
                     <p className='mt-5 text-center text-gray-500 text-xs'>2025 BookLoom. All rights reserved.</p>
                 </div>
             </div>
-            <Footer />
+            <Footer/>
         </>
     )
 }
