@@ -3,8 +3,12 @@ import App from "../App";
 import Home from "../pages/home/Home.jsx";
 import Login from "../components/Login.jsx";
 import Register from "../components/Register.jsx";
+<<<<<<< HEAD
 import CartPage from "../pages/books/CartPage.jsx";
 import CheckOutPage from "../pages/books/CheckOutPage.jsx";
+=======
+import SingleBook from "../pages/books/SingleBook.jsx";
+>>>>>>> 1cc83177bb81eb5a3e1a1177deebb2379a81fa1b
 
 const router = createBrowserRouter([
     {
@@ -13,7 +17,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <home/>,
+                element: <Home />,
             },
             {
                 path: "/orders",
@@ -24,6 +28,7 @@ const router = createBrowserRouter([
                 element: <div>about</div>
             },
             {
+<<<<<<< HEAD
               path: "/cart",
               element: <CartPage />
             },
@@ -31,6 +36,12 @@ const router = createBrowserRouter([
               path:"/checkout",
               element: <CheckOutPage/>
             }
+=======
+                path: "/books/:id",
+                element: <SingleBook />
+            }
+            
+>>>>>>> 1cc83177bb81eb5a3e1a1177deebb2379a81fa1b
         ]
     },
     {
