@@ -20,6 +20,13 @@ app.use(cors(
    }
 ));
 
+// app.post('/orders', (req, res) => {
+//   // Logic for creating an order
+//   const orderData = req.body;
+//   // Insert into database or process the order
+//   res.status(201).json({ message: 'Order created successfully', order: orderData });
+// });
+
 //routes
 const bookRoutes = require("./src/books/book.route")
 app.use("/api/books",bookRoutes)
