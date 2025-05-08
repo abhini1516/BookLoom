@@ -10,7 +10,7 @@ const ordersApi = createApi({
     }),
     tagTypes: ['Orders'],
     endpoints: (builder) => ({
-        createOrder: (builder.mutation) ({
+        createOrder: (builder.mutation)  ({
             query: (newOrder) => ({
                 url: "/",
                 method: "POST",

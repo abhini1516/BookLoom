@@ -6,7 +6,7 @@ const orderSchema = new mongoose.Schema({
         required: true,
     },
     email:{
-        name:String,
+        type: String,
         required:true,
     },
     address: {
@@ -22,4 +22,21 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-})
+    productIds:
+    [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Book',
+        required: true,
+    }],
+    totalPrice: {
+        type: Number,
+        required: true,
+    }
+    }, {
+        timestamps : true,
+    })
+
+    const Order  = mongoose.model('Order', orderSchema);
+    module.exports = Order;
+
+
