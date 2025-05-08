@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
+
 import Swal from 'sweetalert2';
 import { useCreateOrderMutation } from '../../redux/features/orders/ordersApi';
 
@@ -17,6 +18,8 @@ const CheckoutPage = () => {
         watch,
         formState: { errors },
     } = useForm()
+
+ 
 
     const [createOrder, { isLoading, error }] = useCreateOrderMutation();
     const navigate = useNavigate()
@@ -37,15 +40,12 @@ const CheckoutPage = () => {
             totalPrice: totalPrice,
         };
 
-        // Log the new order details to the console
-        console.log("New Order Details:", newOrder);
+        
 
         try {
             // Attempt to create the order
             await createOrder(newOrder).unwrap();
-
-            // If the order is successfully created, log the order details in the response
-            console.log("Order placed successfully:", newOrder);
+        
 
             Swal.fire({
                 title: "Confirmed Order",
