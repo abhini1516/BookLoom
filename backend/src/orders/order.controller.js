@@ -27,5 +27,5 @@ const getOrderByEmail = async (req, res) => {
 
 
 module.exports = {
-    createAOrder,
+    createAOrder, getOrderByEmail
 }
