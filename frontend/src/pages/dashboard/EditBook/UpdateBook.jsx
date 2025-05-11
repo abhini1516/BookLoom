@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
-import InputField from '../addBook/InputField'
-import SelectField from '../addBook/SelectField'
+import React, { useEffect } from 'react';
+import InputField from '../addBook/InputField';
+import SelectField from '../addBook/SelectField';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-import { useFetchBookByIdQuery, useUpdateBookMutation } from '../../../redux/features/books/booksApi';
+import { useFetchBookByIdQuery } from '../../../redux/features/books/booksApi';
 import Loading from '../../../components/Loading';
 import Swal from 'sweetalert2';
 import axios from 'axios';
@@ -12,55 +12,58 @@ import getBaseUrl from '../../../utils/baseURL';
 const UpdateBook = () => {
   const { id } = useParams();
   const { data: bookData, isLoading, isError, refetch } = useFetchBookByIdQuery(id);
-  // console.log(bookData)
-  const [updateBook] = useUpdateBookMutation();
   const { register, handleSubmit, setValue, reset } = useForm();
+
   useEffect(() => {
     if (bookData) {
       setValue('title', bookData.title);
       setValue('description', bookData.description);
-      setValue('category', bookData?.category);
-      setValue('trending', bookData.trending);
+      setValue('category', bookData.category);
+      setValue('trending', !!bookData.trending);
       setValue('oldPrice', bookData.oldPrice);
       setValue('newPrice', bookData.newPrice);
-      setValue('coverImage', bookData.coverImage)
+      setValue('coverImage', bookData.coverImage);
     }
-  }, [bookData, setValue])
+  }, [bookData, setValue]);
 
   const onSubmit = async (data) => {
     const updateBookData = {
       title: data.title,
       description: data.description,
       category: data.category,
-      trending: data.trending,
+      trending: !!data.trending,
       oldPrice: Number(data.oldPrice),
       newPrice: Number(data.newPrice),
-      coverImage: data.coverImage || bookData.coverImage,
+      coverImage: data.coverImage?.trim() === '' ? bookData.coverImage : data.coverImage,
     };
+
     try {
       await axios.put(`${getBaseUrl()}/api/books/edit/${id}`, updateBookData, {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      })
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+
       Swal.fire({
         title: "Book Updated",
-        text: "Your book is updated successfully!",
+        text: "Your book was updated successfully!",
         icon: "success",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, It's Okay!"
+        confirmButtonText: "OK",
       });
-      await refetch()
+
+      await refetch();
+      // Optionally reset the form
+      // reset(updateBookData);
     } catch (error) {
-      console.log("Failed to update book.");
-      alert("Failed to update book.");
+      console.error("Failed to update book:", error);
+      Swal.fire("Error", "Failed to update book. Please try again.", "error");
     }
-  }
-  if (isLoading) return <Loading />
-  if (isError) return <div>Error fetching book data</div>
+  };
+
+  if (isLoading) return <Loading />;
+  if (isError) return <div>Error fetching book data.</div>;
+
   return (
     <div className="max-w-lg mx-auto md:p-6 p-3 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Update Book</h2>
@@ -94,6 +97,7 @@ const UpdateBook = () => {
           ]}
           register={register}
         />
+
         <div className="mb-4">
           <label className="inline-flex items-center">
             <input
@@ -134,7 +138,7 @@ const UpdateBook = () => {
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default UpdateBook
+export default UpdateBook;
