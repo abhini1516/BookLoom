@@ -14,7 +14,9 @@ require('dotenv').config()
 app.use(express.json());
 app.use(cors(
    {
-     origin: ['http://localhost:5173'],
+     origin: ['http://localhost:5173','bookloom.vercel.app',
+'bookloom-abhini-ss-projects.vercel.app'
+],
      methods: ['GET', 'POST', 'PUT', 'DELETE'],
      credentials: true,
    }
