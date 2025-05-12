@@ -13,7 +13,7 @@ import AdminLogin from "../components/AdminLogin.jsx";
 import DashBoardLayout from "../pages/dashboard/DashBoardLayout.jsx";
 import Dashboard from "../pages/dashboard/Dashboard.jsx";
 import AddBook from "../pages/dashboard/addBook/AddBook.jsx";
-import ManageBooks from "../pages/dashboard/manageBooks/manageBooks.jsx";
+import ManageBooks from "../pages/dashboard/manageBooks/ManageBooks.jsx";
 import UpdateBook from "../pages/dashboard/EditBook/UpdateBook.jsx";
 
 
