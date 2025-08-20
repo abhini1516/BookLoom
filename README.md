@@ -57,7 +57,7 @@ bookstore/
 
 ### 1️⃣ Clone the Repository  
 ```bash
-git clone https://github.com/your-username/bookloom.git
+git clone https://github.com/abhini1516/BookLoom.git
 cd bookloom
 ```
 
