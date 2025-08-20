@@ -2,6 +2,8 @@
 
 BookLoom is a modern, full-featured online bookstore platform designed to bring your favorite books right to your fingertips. Powered by the robust MERN stack (MongoDB, Express.js, React, Node.js), BookLoom offers a seamless and secure way to browse, order, and manage books online with convenience and confidence.
 
+**Live Demo:** 👉 [BookLoom](https://bookloom.vercel.app/)
+
 ***
 
 ## **✨ Core Features**
