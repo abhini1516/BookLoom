@@ -138,7 +138,7 @@ Open your browser and navigate to **http://localhost:5173** to explore BookLoom!
 
 ## **📄 License**
 
-This project is licensed under the **MIT License**.
+This project is licensed under the  [MIT License](LICENSE).
 
 ***
 
